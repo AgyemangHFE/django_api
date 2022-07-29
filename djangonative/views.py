@@ -53,9 +53,9 @@ def apiOverview(request):
     api_urls={
         'list':'/task-list/',
         'Detail View':'/task-detail/<str:pk>/',
-        'Create':'/tast-create/',
-        'update':'/tast-update/<str:pk>/',
-        'Delete':'/tast-delete/<str:pk/>'
+        'Create':'/task-create/',
+        'update':'/task-update/<str:pk>/',
+        'Delete':'/task-delete/<str:pk/>'
 
     }
     return Response(api_urls)
