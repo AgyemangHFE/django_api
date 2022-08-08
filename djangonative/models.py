@@ -1,3 +1,4 @@
+from distutils.command.upload import upload
 from turtle import title
 from django.db import models
 
@@ -14,6 +15,7 @@ class Note(models.Model):
 class Test(models.Model):
     title=models.CharField(max_length=30)
     complete=models.BooleanField(default=False, blank=True, null=True)
+    upload = models.ImageField(upload_to ='uploads/')
     
     def __str__(self) :
         return self.title
