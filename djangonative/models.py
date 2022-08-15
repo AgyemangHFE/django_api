@@ -1,4 +1,6 @@
 from distutils.command.upload import upload
+from operator import mod
+from sre_constants import CATEGORY
 from turtle import title
 from django.db import models
 
@@ -19,3 +21,34 @@ class Test(models.Model):
     
     def __str__(self) :
         return self.title
+
+
+    
+
+class Restaurant(models.Model):
+   
+    name=models.CharField(max_length=30)
+    rating=models.CharField(max_length=30)
+    image = models.ImageField(upload_to ='uploads/')
+    location=models.CharField(max_length=30)
+    
+    def __str__(self) :
+        return self.name 
+
+    
+
+
+class Dishes(models.Model):
+    restaurantName=models.ForeignKey(Restaurant, on_delete=models.CASCADE)
+    name=models.CharField(max_length=30)
+    price=models.IntegerField()
+    image = models.ImageField(upload_to ='uploads/')
+
+    def __str__(self) :
+        return self.name
+        
+
+
+
+
+    

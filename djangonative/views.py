@@ -4,10 +4,10 @@ from django.shortcuts import render
 from django.http import JsonResponse
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from .models import Test
+from .models import Dishes, Restaurant, Test
 
 from djangonative.models import Test
-from .serializers import TaskSerializer
+from .serializers import RestaurantSerializer, TaskSerializer,DishSerializer
 
 @api_view(['GET'])
 def tasklist(request):
@@ -59,6 +59,26 @@ def apiOverview(request):
 
     }
     return Response(api_urls)
+
+
+@api_view(['GET'])
+def dishlist(request):
+    dish=Dishes.objects.all()
+    serializer=DishSerializer(dish,many=True)
+    return Response(serializer.data)
+
+@api_view(['GET'])
+def dishDetail(request,pk):
+    dish=Dishes.objects.filter(restaurantName=pk)
+    serializer=DishSerializer(dish,many=True)
+    return Response(serializer.data)
+
+
+@api_view(['GET'])
+def restaurantlist(request):
+    res=Restaurant.objects.all()
+    serializer=RestaurantSerializer(res,many=True)
+    return Response(serializer.data)
 
 
 
