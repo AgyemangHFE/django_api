@@ -22,6 +22,20 @@ class Test(models.Model):
     def __str__(self) :
         return self.title
 
+class Person(models.Model):
+    username = models.CharField(max_length=30)
+    number = models.IntegerField()
+    email = models.CharField(max_length=30)
+    password=models.CharField(max_length=30)
+    longitude = models.FloatField( null=True)
+    latitude = models.FloatField( null=True)
+    dispatch_mode=models.BooleanField()
+
+
+
+
+        
+
 
     
 

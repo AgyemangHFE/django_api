@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Dishes, Restaurant, Test
+from .models import Dishes, Person, Restaurant, Test
 
 class TaskSerializer(serializers.ModelSerializer):
     class Meta:
@@ -14,4 +14,9 @@ class DishSerializer(serializers.ModelSerializer):
 class RestaurantSerializer(serializers.ModelSerializer):
     class Meta:
         model=Restaurant
+        fields ='__all__'
+
+class PersonSerializer(serializers.ModelSerializer):
+    class Meta:
+        model=Person
         fields ='__all__'
