@@ -67,53 +67,53 @@ def restaurantlist(request):
 
 
 
-# @api_view(['GET'])
-# def tasklist(request):
-#     task=Test.objects.all()
-#     serializer=TaskSerializer(task,many=True)
-#     return Response(serializer.data)
+@api_view(['GET'])
+def tasklist(request):
+    task=Test.objects.all()
+    serializer=TaskSerializer(task,many=True)
+    return Response(serializer.data)
 
-# @api_view(['GET'])
-# def taskDetail(request,pk):
-#     task=Test.objects.get(id=pk)
-#     serializer=TaskSerializer(task,many=False)
-#     return Response(serializer.data)
+@api_view(['GET'])
+def taskDetail(request,pk):
+    task=Test.objects.get(id=pk)
+    serializer=TaskSerializer(task,many=False)
+    return Response(serializer.data)
 
-# @api_view(['POST'])
-# def taskCreate(request):
+@api_view(['POST'])
+def taskCreate(request):
     
-#     serializer=TaskSerializer(data=request.data)
-#     if serializer.is_valid():
-#         serializer.save()
+    serializer=TaskSerializer(data=request.data)
+    if serializer.is_valid():
+        serializer.save()
 
-#     return Response(serializer.data)
+    return Response(serializer.data)
 
-# @api_view(['POST'])
-# def taskUpdate(request,pk):
-#     task=Test.objects.get(id=pk)
+@api_view(['POST'])
+def taskUpdate(request,pk):
+    task=Test.objects.get(id=pk)
     
-#     serializer=TaskSerializer(instance=task,data=request.data)
-#     if serializer.is_valid():
-#         serializer.save()
+    serializer=TaskSerializer(instance=task,data=request.data)
+    if serializer.is_valid():
+        serializer.save()
 
-#     return Response(serializer.data)
+    return Response(serializer.data)
 
-# @api_view(['DELETE'])
-# def taskDelete(request,pk):
-#     task=Test.objects.get(id=pk)
+@api_view(['DELETE'])
+def taskDelete(request,pk):
+    task=Test.objects.get(id=pk)
     
-#     task.delete()
+    task.delete()
 
-#     return Response('Deleted')
+    return Response('Deleted')
 
 @api_view(['GET'])
 def apiOverview(request):
     api_urls={
-        # 'list':'/task-list/',
-        # 'Detail View':'/task-detail/<str:pk>/',
-        # 'Create':'/task-create/',
-        # 'update':'/task-update/<str:pk>/',
-        # 'Delete':'/task-delete/<str:pk/>',
+        'list':'/task-list/',
+        'Detail View':'/task-detail/<str:pk>/',
+        'Create':'/task-create/',
+        'update':'/task-update/<str:pk>/',
+        'Delete':'/task-delete/<str:pk/>',
 
         'Dishes':'dish-detail/<str:pk>/',
         'DispatchList':'dispatch-list/',
