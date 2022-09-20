@@ -40,69 +40,6 @@ def dispatchOff(request,pk):
     task=Person.objects.filter(id=pk).update(dispatch_mode=False)
     return Response("Dispatch Mode Off") 
 
-
-
-
-@api_view(['GET'])
-def tasklist(request):
-    task=Test.objects.all()
-    serializer=TaskSerializer(task,many=True)
-    return Response(serializer.data)
-
-@api_view(['GET'])
-def taskDetail(request,pk):
-    task=Test.objects.get(id=pk)
-    serializer=TaskSerializer(task,many=False)
-    return Response(serializer.data)
-
-@api_view(['POST'])
-def taskCreate(request):
-    
-    serializer=TaskSerializer(data=request.data)
-    if serializer.is_valid():
-        serializer.save()
-
-    return Response(serializer.data)
-
-@api_view(['POST'])
-def taskUpdate(request,pk):
-    task=Test.objects.get(id=pk)
-    
-    serializer=TaskSerializer(instance=task,data=request.data)
-    if serializer.is_valid():
-        serializer.save()
-
-    return Response(serializer.data)
-
-@api_view(['DELETE'])
-def taskDelete(request,pk):
-    task=Test.objects.get(id=pk)
-    
-    task.delete()
-
-    return Response('Deleted')
-
-@api_view(['GET'])
-def apiOverview(request):
-    api_urls={
-        'list':'/task-list/',
-        'Detail View':'/task-detail/<str:pk>/',
-        'Create':'/task-create/',
-        'update':'/task-update/<str:pk>/',
-        'Delete':'/task-delete/<str:pk/>',
-
-        'Dishes':'dish-detail/<str:pk>/',
-        'DispatchList':'dispatch-list/',
-        'DispatchOn':'dispatch-on<str:pk>/',
-        'DispatchOff':'dispatch-off<str:pk>/',
-        'RestaurantList':'restaurant-list/',
-        'Register':'register-person/',
-        'PersonList':'person-list/',
-
-    }
-    return Response(api_urls)
-
-
 @api_view(['GET'])
 def dishlist(request):
     dish=Person.objects.all()
@@ -124,6 +61,71 @@ def restaurantlist(request):
     res=Restaurant.objects.all()
     serializer=RestaurantSerializer(res,many=True)
     return Response(serializer.data)
+
+
+
+
+
+
+# @api_view(['GET'])
+# def tasklist(request):
+#     task=Test.objects.all()
+#     serializer=TaskSerializer(task,many=True)
+#     return Response(serializer.data)
+
+# @api_view(['GET'])
+# def taskDetail(request,pk):
+#     task=Test.objects.get(id=pk)
+#     serializer=TaskSerializer(task,many=False)
+#     return Response(serializer.data)
+
+# @api_view(['POST'])
+# def taskCreate(request):
+    
+#     serializer=TaskSerializer(data=request.data)
+#     if serializer.is_valid():
+#         serializer.save()
+
+#     return Response(serializer.data)
+
+# @api_view(['POST'])
+# def taskUpdate(request,pk):
+#     task=Test.objects.get(id=pk)
+    
+#     serializer=TaskSerializer(instance=task,data=request.data)
+#     if serializer.is_valid():
+#         serializer.save()
+
+#     return Response(serializer.data)
+
+# @api_view(['DELETE'])
+# def taskDelete(request,pk):
+#     task=Test.objects.get(id=pk)
+    
+#     task.delete()
+
+#     return Response('Deleted')
+
+@api_view(['GET'])
+def apiOverview(request):
+    api_urls={
+        # 'list':'/task-list/',
+        # 'Detail View':'/task-detail/<str:pk>/',
+        # 'Create':'/task-create/',
+        # 'update':'/task-update/<str:pk>/',
+        # 'Delete':'/task-delete/<str:pk/>',
+
+        'Dishes':'dish-detail/<str:pk>/',
+        'DispatchList':'dispatch-list/',
+        'DispatchOn':'dispatch-on<str:pk>/',
+        'DispatchOff':'dispatch-off<str:pk>/',
+        'RestaurantList':'restaurant-list/',
+        'Register':'register-person/',
+        'PersonList':'person-list/',
+
+    }
+    return Response(api_urls)
+
 
 
 
