@@ -9,7 +9,9 @@ from .models import Dishes, Person, Restaurant, Test
 
 from djangonative.models import Test
 from .serializers import RestaurantSerializer, TaskSerializer,DishSerializer,PersonSerializer
+  
 
+  
 @api_view(['GET'])
 def personlist(request):
     task=Person.objects.all()
@@ -23,6 +25,12 @@ def registerperson(request):
     if serializer.is_valid():
         serializer.save()
 
+    return Response(serializer.data)
+
+@api_view(['GET'])
+def login(request,pk):
+    task=Person.objects.get(id=pk)
+    serializer=TaskSerializer(task,many=False)
     return Response(serializer.data)
 
 @api_view(['GET'])
@@ -60,7 +68,12 @@ def dishDetail(request,pk):
 def restaurantlist(request):
     res=Restaurant.objects.all()
     serializer=RestaurantSerializer(res,many=True)
-    return Response(serializer.data)
+    return Response(serializer.data)  
+
+@api_view(['GET'])
+def sendOrder(request,pk):
+    
+    return Response(request.data)
 
 
 

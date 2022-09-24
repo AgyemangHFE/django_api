@@ -24,6 +24,8 @@ class Test(models.Model):
 
 class Person(models.Model):
     username = models.CharField(max_length=30)
+    firstname = models.CharField(max_length=30)
+    lastname = models.CharField(max_length=30)
     number = models.IntegerField()
     email = models.CharField(max_length=30)
     password=models.CharField(max_length=30)
@@ -45,6 +47,8 @@ class Restaurant(models.Model):
     rating=models.CharField(max_length=30)
     image = models.ImageField(upload_to ='uploads/')
     location=models.CharField(max_length=30)
+    longitude = models.FloatField( null=True)
+    latitude = models.FloatField( null=True)
     
     def __str__(self) :
         return self.name 
@@ -60,6 +64,8 @@ class Dishes(models.Model):
 
     def __str__(self) :
         return self.name
+
+
         
 
 
