@@ -10,7 +10,7 @@ urlpatterns =[
     path('task-delete/<str:pk>/',views. taskDelete,name='task-Delete'),
     
     
-    
+    path('order-list/',views.orders,name='order-list'),
     path('register-person/',views.registerperson,name='register-person'),
     path('login-person/<str:pk>/',views.login,name='login-person'),
     path('dish-detail/<str:pk>/',views.dishDetail,name='dish-detail'),

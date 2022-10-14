@@ -8,7 +8,7 @@ from rest_framework.response import Response
 from .models import Dishes, Person, Restaurant, Test
 
 from djangonative.models import Test
-from .serializers import RestaurantSerializer, TaskSerializer,DishSerializer,PersonSerializer
+from .serializers import OrderSerializer, RestaurantSerializer, TaskSerializer,DishSerializer,PersonSerializer
   
 
   
@@ -22,6 +22,13 @@ def personlist(request):
 def registerperson(request):
     
     serializer=PersonSerializer(data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+
+@api_view(['POST'])
+def orders(request):
+    print(request.data)
+    serializer=OrderSerializer(data=request.data)
     if serializer.is_valid():
         serializer.save()
 

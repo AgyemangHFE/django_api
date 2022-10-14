@@ -3,6 +3,7 @@ from operator import mod
 from sre_constants import CATEGORY
 from turtle import title
 from django.db import models
+from jsonfield import JSONField
 
 # Create your models here.
 
@@ -24,14 +25,19 @@ class Test(models.Model):
 
 class Person(models.Model):
     username = models.CharField(max_length=30)
-    firstname = models.CharField(max_length=30)
-    lastname = models.CharField(max_length=30)
+    firstname = models.CharField(max_length=30,null=True)
+    lastname = models.CharField(max_length=30,null=True)
     number = models.IntegerField()
     email = models.CharField(max_length=30)
     password=models.CharField(max_length=30)
     longitude = models.FloatField( null=True)
     latitude = models.FloatField( null=True)
-    dispatch_mode=models.BooleanField()
+    dispatch_mode=models.BooleanField(default=False)
+
+class Orders(models.Model):
+    order=models.JSONField(default=dict)
+    orderproccesing=models.BooleanField(default=False)
+    ordercomplete=models.BooleanField(default=False)
 
 
 
